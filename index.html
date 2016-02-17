@@ -17,9 +17,7 @@ $(".form-group > button.btn").on("click", function(){
 	var parent_width = $(".progress").width();
 	var percent_width = Math.round((width_of_progress / parent_width)*100);
 	var change_progress_width = percent_width + num;
-	console.log(percent_width);
-    console.log(change_progress_width);
-    if(change_progress_width > 100)
+	if(change_progress_width > 100)
     {
     $("#"+progress_select+"").width(""+change_progress_width+"%");
     $("#"+progress_select+" > span").text(""+change_progress_width+"%");
