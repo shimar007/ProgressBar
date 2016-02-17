@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Progress Bars Demo</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<script type="text/javascript">
+$(function() {
+$(".form-group > button.btn").on("click", function(){
+    var num = parseInt(this.innerHTML);
+    var progress_select = $('#progress-select option:selected').val();
+	var width_of_progress = $("#"+progress_select+"").width();
+	var parent_width = $(".progress").width();
+	var percent_width = Math.round((width_of_progress / parent_width)*100);
+	var change_progress_width = percent_width + num;
+	console.log(percent_width);
+    console.log(change_progress_width);
+    if(change_progress_width > 100)
+    {
+    $("#"+progress_select+"").width(""+change_progress_width+"%");
+    $("#"+progress_select+" > span").text(""+change_progress_width+"%");
+    $("#"+progress_select+"").css("background-color","#FF0000");
+    }
+    else if(change_progress_width < 0)
+    {
+	$("#"+progress_select+"").width("0%"); 
+	$("#"+progress_select+"").css("background-color","#6EB2D6");   
+    $("#"+progress_select+" > span").text("0%");
+    }
+    else
+    {
+	$("#"+progress_select+"").width(""+change_progress_width+"%");
+    $("#"+progress_select+" > span").text(""+change_progress_width+"%");
+    $("#"+progress_select+"").css("background-color","#6EB2D6");    
+    }
+});
+});
+</script>
+<style>
+	.progress
+	{
+		border:1px solid #000;
+		border-radius: 0px;
+		position: relative;
+	}
+	
+	.progress-bar
+	{
+		background-color: #6EB2D6;
+	}
+	
+	.progress-bar > span
+	{
+		color: #000;
+		width: 100%;
+		position: absolute;
+		display: block;
+	}
+</style>
+<body>
+<div class="container">
+  <h2>Progress Bar Demo</h2>
+  <div class="progress">
+    <div class="progress-bar" role="progressbar" style="width:25%" id="progress1">
+      <span>25%</span>
+    </div>
+  </div>
+  <div class="progress">
+    <div class="progress-bar" role="progressbar" style="width:50%" id="progress2">
+      <span>50%</span>
+    </div>
+  </div>
+  
+  <div class="progress">
+    <div class="progress-bar" role="progressbar" style="width:75%" id="progress3">
+      <span>75%</span>
+    </div>
+  </div>
+ <div>
+    <div class="form-group">
+		<select class="form-control" id="progress-select" style="width:auto;display:inline-block">
+			<option value="progress1">#progress1</option>
+			<option value="progress2">#progress2</option>
+			<option value="progress3">#progress3</option>
+	</select>
+		<button type="button" class="btn btn-default">-25</button>
+		<button type="button" class="btn btn-default">-10</button>
+		<button type="button" class="btn btn-default">+10</button>
+		<button type="button" class="btn btn-default">+25</button>
+  </div>
+  </div>
+</div>
+</body>
+</html>
